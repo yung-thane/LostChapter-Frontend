@@ -43,6 +43,7 @@ import { AdminFeatureComponent } from './admin-feature/admin-feature.component';
 import { UpdateBookComponent } from './update-book/update-book.component';
 import { FeaturedProductsComponent } from './featured-products/featured-products.component';
 import { NgxSlickJsModule } from 'ngx-slickjs';
+import { DateToAgePipe } from './date-to-age.pipe';
 
 @NgModule({
   declarations: [
@@ -61,7 +62,8 @@ import { NgxSlickJsModule } from 'ngx-slickjs';
     SalesProductComponent,
     AdminFeatureComponent,
     UpdateBookComponent,
-    FeaturedProductsComponent
+    FeaturedProductsComponent,
+    DateToAgePipe
   ],
   imports: [
     BrowserModule,
