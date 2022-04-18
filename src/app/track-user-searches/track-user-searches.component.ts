@@ -1,5 +1,9 @@
 import { Component, OnInit } from '@angular/core';
-import { SearchResultsComponent } from '../search-results/search-results.component';
+import { TrackUserSearches } from '../track-user-searches';
+import { Products } from '../Products';
+import { SearchProductsService } from '../search-products.service';
+import { SearchProducts } from 'SearchProduct';
+import { TrackUserSearchesService } from '../track-user-searches.service';
 
 @Component({
   selector: 'app-track-user-searches',
@@ -8,9 +12,16 @@ import { SearchResultsComponent } from '../search-results/search-results.compone
 })
 export class TrackUserSearchesComponent implements OnInit {
 
-  constructor() { }
+  products!: Products[];
+  constructor(private trackUserSearches: TrackUserSearchesService) { }
 
   ngOnInit(): void {
+    this.trackUserSearches.getBookId().subscribe((data: Products[]) => {
+      console.log(data);
+      this.products! = data;
+    })
   }
+
+
 
 }
