@@ -1,4 +1,5 @@
 import { Component, OnInit } from '@angular/core';
+import { SearchResultsComponent } from '../search-results/search-results.component';
 
 @Component({
   selector: 'app-track-user-searches',
