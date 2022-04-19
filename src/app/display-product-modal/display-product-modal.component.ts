@@ -7,6 +7,8 @@ import { User } from 'User';
 import { Cart } from 'Cart';
 import { LoginService } from '../login.service';
 import { SearchProductsService } from '../search-products.service';
+import { Wishlist } from '../wishlist';
+import { WishlistService } from 'src/service/wishlist.service';
 
 @Component({
   selector: 'app-display-product-modal',
@@ -15,19 +17,22 @@ import { SearchProductsService } from '../search-products.service';
 })
 export class DisplayProductModalComponent implements OnInit {
 
-  constructor(private cartService: CartService, private router: Router, private loginService: LoginService, private addProductToCartService: SearchProductsService, public dialog: MatDialog, private getGenreService: SearchProductsService, public dialogRef: MatDialogRef<DisplayProductModalComponent>, @Inject(MAT_DIALOG_DATA)public data: string) { }
+  constructor(private cartService: CartService, private wishlistService: WishlistService, private router: Router, private loginService: LoginService, private addProductToCartService: SearchProductsService, private addProductToWishlistService: SearchProductsService, public dialog: MatDialog, private getGenreService: SearchProductsService, public dialogRef: MatDialogRef<DisplayProductModalComponent>, @Inject(MAT_DIALOG_DATA)public data: string) { }
 
   selectedProducts!: SearchProducts;
   errorMessage!: string;
+  wishlistId!: number;
   cartId!: number;
   quantity = 1;
   userId!: number;
   added?: boolean;
   addedToCart = "Item have been added to Cart";
+  addedToWishlist = "Item has been added to Wishlist";
 
   role!: String;
 
   addToCart = "Add to Cart";
+  addToWishlist = "Add to Wishlist";
 
   ngOnInit(): void {
     this.checkLoginStatus();
@@ -63,6 +68,20 @@ export class DisplayProductModalComponent implements OnInit {
       next: (res) => {
         if(res.status === 200) {
           let body = <Cart> res.body;
+          this.added = true;
+        }
+      },
+      error: (err) => {
+        this.errorMessage = err.error;
+
+      }
+    })
+  }
+  onAddToWishlist(productId: number){
+    this.addProductToWishlistService.addToWishlist(String(productId), String(this.quantity), String(this.wishlistId)).subscribe({
+      next: (res) => {
+        if(res.status === 200) {
+          let body = <Wishlist> res.body;
           this.added = true;
         }
       },

@@ -44,6 +44,18 @@ export class SearchProductsService {
       })
   }
 
+  addToWishlist(productId: string, quantity: string, userId: string){
+    let parameter = new HttpParams();
+    parameter = parameter.append('bookId', productId);
+    parameter = parameter.append('quantityToBuy', quantity);
+    return this.http.post(`http://localhost:8081/users/{userId}/wishlist`, {},
+      {
+        "params": parameter,
+        withCredentials: true,
+        observe:'response'
+      })
+  }
+
   getBookById(bookId: number){
     return this.http.get(`http://localhost:8081/books/${bookId}`, {
       //`http://ec2-54-84-57-117.compute-1.amazonaws.com:8081/books/${bookId}`, {

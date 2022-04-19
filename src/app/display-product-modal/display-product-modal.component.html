@@ -9,6 +9,10 @@
        <button  mat-raised-button color="primary" (click)="onAddToCart(selectedProducts.bookId)"> {{addToCart}}
           <i class="material-icons">shopping_cart</i></button>
       </div>
+      <div style="flex-grow:1;" class="example-button-row" *ngIf="role==='Customer'">
+        <button  mat-raised-button color="primary" (click)="onAddToWishlist(selectedProducts.bookId)"> {{onAddToWishlist}}
+           <i class="material-icons">wishlist</i></button>
+       </div>
       <div style="flex-grow:1;" class="example-button-row" *ngIf="role==='Admin'">
         <button  mat-raised-button color="primary" (click)="onCloseDisplayProduct()" a routerLink="/admin/book/{{selectedProducts.bookId}}"> Update Book
          </button>
