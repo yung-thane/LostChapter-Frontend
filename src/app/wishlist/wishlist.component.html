@@ -1,0 +1,53 @@
+<app-indexnavbar></app-indexnavbar>
+<div class="container">
+  <h1 style="font-weight: bolder;">Wishlist Details for {{wishlist?.user?.firstName}} {{wishlist?.user?.lastName}}</h1>
+  <div>
+    <table id="cart" class="table table-hover table-container">
+      <thead>
+        <tr>
+          <th style="width: 50%">Product</th>
+          <th style="width: 25%">Price</th>
+          <th style="width: 15%">Quantity</th>
+          <th style="width: 10%"></th>
+        </tr>
+      </thead>
+      <tbody>
+        <ng-container *ngFor="let p of wishlist?.booksToBuy">
+          <tr>
+            <td data-th="Product">
+              <div class="row">
+                <div class="col-sm-2 hidden-xs">
+                  <img [src]="p.books.bookImage" class="img-responsive"/>
+                </div>
+                <div class="col-sm-10">
+               <strong><h4 class="nomargin" style="font-weight: bolder; color: gray;text-align: center;" >{{ p.books.bookName }}</h4></strong>
+                  <p style="word-break: break-all; white-space: normal; font-weight: 520; font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif; margin: 32px;"  >{{p.books.synopsis}}</p>
+                </div>
+              </div>
+            </td>
+            <td data-th="Price">${{ p.books.bookPrice }}</td>
+            <td data-th="Quantity">{{ p.quantityToBuy }}
+            </td>
+            <td class="actions" data-th="">
+              <button class="btn btn-danger btn-sm" (click)="onDeleteButtonClick(p.books.bookId)"><i class="fa fa-trash-o"></i></button>
+            </td>
+          </tr>
+        </ng-container>
+
+      </tbody>
+      <tfoot>
+        <tr class="visible-xs">
+          <td class="text-center"><strong></strong></td>
+        </tr>
+        <tr>
+          <td>
+            <a routerLink="/home" class="btn btn-warning">
+              <i class="fa fa-angle-left"></i> Continue Shopping</a>
+          </td>
+          <td colspan="2" class="hidden-xs"></td>
+        </tr>
+      </tfoot>
+
+    </table>
+  </div>
+</div>
