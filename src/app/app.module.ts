@@ -43,7 +43,6 @@ import { AdminFeatureComponent } from './admin-feature/admin-feature.component';
 import { UpdateBookComponent } from './update-book/update-book.component';
 import { FeaturedProductsComponent } from './featured-products/featured-products.component';
 import { NgxSlickJsModule } from 'ngx-slickjs';
-import { TransactionHistoryComponent } from './transaction-history/transaction-history.component';
 import { WishlistComponent } from './wishlist/wishlist.component';
 
 
